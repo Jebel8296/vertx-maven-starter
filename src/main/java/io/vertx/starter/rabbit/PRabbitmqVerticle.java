@@ -8,7 +8,7 @@ import io.vertx.rabbitmq.RabbitMQClient;
 /**
  * Created by binger on 2017/7/12.
  */
-public abstract class PRabbitmqVerticle extends AbstractVerticle {
+public class PRabbitmqVerticle extends AbstractVerticle {
 
   protected Logger log = LoggerFactory.getLogger(getClass());
   protected RabbitMQClient rabbitMQClient;
@@ -20,11 +20,11 @@ public abstract class PRabbitmqVerticle extends AbstractVerticle {
     rabbitMQClient.start(startResult -> {
       if (startResult.succeeded()) {
         log.info("publish rabbitmq started.");
-        rabbitMQClient.exchangeDeclare("xu.exchange", "fanout", false, false, exchangeResult -> {
+        rabbitMQClient.exchangeDeclare("xu.exchange", "direct", true, false, exchangeResult -> {
           if (exchangeResult.succeeded()) {
             log.info("xu.exchange declare successfully.");
 
-            rabbitMQClient.queueDeclare("xu.queue", false, false, false, queueResult -> {
+            rabbitMQClient.queueDeclare("xu.queue", true, false, false, queueResult -> {
               if (queueResult.succeeded()) {
                 log.info("my.queue declare successfully.");
 

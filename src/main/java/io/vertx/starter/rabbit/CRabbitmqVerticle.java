@@ -1,9 +1,13 @@
 package io.vertx.starter.rabbit;
 
 import io.vertx.core.AbstractVerticle;
+import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.rabbitmq.RabbitMQClient;
+
+import javax.swing.text.html.Option;
+import java.util.Optional;
 
 /**
  * Created by binger on 2017/7/12.
@@ -19,7 +23,15 @@ public abstract class CRabbitmqVerticle extends AbstractVerticle {
     rabbitMQClient = RabbitMQClient.create(vertx, config());
     rabbitMQClient.start(startResult -> {
       if (startResult.succeeded()) {
-        log.info("consumer rabbitmq started.");
+        log.info("rabbitmq clent started.");
+
+        rabbitMQClient.basicConsume("xu.queue", "xu.address", consumeResult -> {
+          if (consumeResult.succeeded()) {
+            log.info("Xu Consume Created");
+          } else {
+            consumeResult.cause().printStackTrace();
+          }
+        });
       } else {
         startResult.cause().printStackTrace();
       }
