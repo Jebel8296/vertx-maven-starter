@@ -30,7 +30,7 @@ public class GatewayVerticle extends HuiAbstrackVerticle {
     router.route("/micro/v1/*").handler(routingContext -> {
       new VertxRequestHandler(vertx,vertxResteasyDeployment).handle(routingContext.request());
     });
-    vertx.createHttpServer().requestHandler(router::accept).listen(8080);
+    vertx.createHttpServer().requestHandler(router::accept).listen(9080);
     logger.info("GatewayVerticle Started.");
   }
 }
