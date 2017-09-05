@@ -11,6 +11,7 @@
 
   <properties>
     <vertx.version>3.4.2</vertx.version>
+    <resteasy.version>3.1.0.Final</resteasy.version>
     <main.verticle>io.vertx.starter.MainVerticle</main.verticle>
   </properties>
 
@@ -42,6 +43,19 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-web-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-hazelcast</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-mongo-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-vertx</artifactId>
+      <version>${resteasy.version}</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
