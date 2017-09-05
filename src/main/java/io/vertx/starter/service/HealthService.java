@@ -25,6 +25,14 @@ public class HealthService extends HuiResteasyAbstrack{
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public void health(@Suspended final AsyncResponse asyncResponse, @Context Vertx vertx) {
-    send(vertx, GlobalVarialble.VERTX_ADDRESS_HEALTH,new JsonObject(),asyncResponse);
+    send(vertx, GlobalVarialble.ADDRESS_HEALTH,new JsonObject(),asyncResponse);
+  }
+
+  @GET
+  @Path("/mongo")
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  public void testMongo(@Suspended final AsyncResponse asyncResponse, @Context Vertx vertx) {
+    send(vertx, GlobalVarialble.ADDRESS_TEST_MONGO,new JsonObject(),asyncResponse);
   }
 }

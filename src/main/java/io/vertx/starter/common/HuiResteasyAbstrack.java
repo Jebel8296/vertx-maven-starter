@@ -22,7 +22,11 @@ public abstract class HuiResteasyAbstrack {
       if (messageAsyncResult.succeeded()) {
         JsonObject result = (JsonObject) messageAsyncResult.result().body();
         logger.info(result);
-        asyncResponse.resume(Response.status(result.getInteger("code")).entity(result.getJsonObject("message").encodePrettily()).build());
+        if (result != null) {
+          asyncResponse.resume((result.encodePrettily()));
+        } else {
+          asyncResponse.resume(Response.status(Response.Status.NOT_FOUND).build());
+        }
       } else {
         asyncResponse.resume(Response.status(Response.Status.INTERNAL_SERVER_ERROR).build());
       }

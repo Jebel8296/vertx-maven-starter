@@ -5,5 +5,6 @@ package io.vertx.starter.common;
  */
 public abstract class GlobalVarialble {
 
-  public static final String VERTX_ADDRESS_HEALTH = "hui.health";
+  public static final String ADDRESS_HEALTH = "health";
+  public static final String ADDRESS_TEST_MONGO="test.mongo";
 }
