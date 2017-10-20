@@ -12,7 +12,6 @@ import java.util.List;
 public class HealthVerticle extends HuiAbstrackVerticle {
   @Override
   public void start() throws Exception {
-    super.start();
 
     vertx.eventBus().consumer(GlobalVarialble.ADDRESS_HEALTH, message -> {
       JsonObject jsonObject = (JsonObject) message.body();
@@ -43,7 +42,7 @@ public class HealthVerticle extends HuiAbstrackVerticle {
                   message.reply(r.result().get(0));
                 });
               });
-            }else{
+            } else {
               System.out.println("Product Unremoved!");
               message.reply(null);
             }

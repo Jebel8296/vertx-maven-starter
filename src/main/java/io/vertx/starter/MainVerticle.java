@@ -7,6 +7,7 @@ import io.vertx.core.logging.LoggerFactory;
 import io.vertx.core.spi.cluster.ClusterManager;
 import io.vertx.spi.cluster.hazelcast.HazelcastClusterManager;
 import io.vertx.starter.gateway.GatewayVerticle;
+import io.vertx.starter.text.config.ZookeeperConfigTest;
 import io.vertx.starter.verticle.HealthVerticle;
 
 public class MainVerticle {
@@ -22,6 +23,7 @@ public class MainVerticle {
         Vertx vertx = res.result();
         vertx.deployVerticle(GatewayVerticle.class.getName());
         vertx.deployVerticle(HealthVerticle.class.getName());
+        vertx.deployVerticle(ZookeeperConfigTest.class.getName());
       } else {
         // failed!
       }

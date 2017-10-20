@@ -1,5 +1,6 @@
 package io.vertx.starter.common;
 
+import io.vertx.config.ConfigRetriever;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.core.json.JsonObject;
@@ -19,6 +20,7 @@ public class HuiAbstrackVerticle extends AbstractVerticle {
 
   protected Logger logger = LoggerFactory.getLogger(getClass());
   protected MongoClient mongoClient = null;
+  protected ConfigRetriever configRetriever;
 
   @Override
   public void start() throws Exception {
