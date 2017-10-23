@@ -16,17 +16,20 @@ public class ZookeeperConfigTest extends HuiAbstrackVerticle {
       logger.info(jsonObject.encode());
 
       getConfigFromZookeeper(jsonObject.getString("key")).setHandler(handler -> {
+        JsonObject reply = new JsonObject();
+        reply.put("code", "0");
         if (handler.succeeded()) {
           JsonObject result = handler.result();
-          message.reply(result);
+          if (!result.isEmpty()) {
+            message.reply(result);
+          } else {
+            message.reply(reply);
+          }
         } else {
-          JsonObject result = new JsonObject();
-          result.put("code", "0");
-          message.reply(result);
+          message.reply(reply);
         }
       });
     });
-
     logger.info("ZookeeperConfigTest Started.");
   }
 
