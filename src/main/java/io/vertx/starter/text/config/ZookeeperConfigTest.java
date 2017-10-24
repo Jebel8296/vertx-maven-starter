@@ -10,7 +10,7 @@ import io.vertx.starter.common.HuiAbstrackVerticle;
 public class ZookeeperConfigTest extends HuiAbstrackVerticle {
   @Override
   public void start() throws Exception {
-
+    super.start();
     vertx.eventBus().consumer(GlobalVarialble.ADDRESS_TEST_ZOOKEEPERCONFIG, message -> {
       JsonObject jsonObject = (JsonObject) message.body();
       logger.info(jsonObject.encode());
@@ -21,6 +21,7 @@ public class ZookeeperConfigTest extends HuiAbstrackVerticle {
         if (handler.succeeded()) {
           JsonObject result = handler.result();
           if (!result.isEmpty()) {
+            logger.info("ZookeeperConfigTest," + Thread.currentThread().getName());
             message.reply(result);
           } else {
             message.reply(reply);
@@ -30,7 +31,7 @@ public class ZookeeperConfigTest extends HuiAbstrackVerticle {
         }
       });
     });
-    logger.info("ZookeeperConfigTest Started.");
+    logger.info("【" + Thread.currentThread().getName() + "】：" + "ZookeeperConfigTest Started.");
   }
 
 }

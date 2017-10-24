@@ -12,7 +12,7 @@ import java.util.List;
 public class HealthVerticle extends HuiAbstrackVerticle {
   @Override
   public void start() throws Exception {
-
+    super.start();
     vertx.eventBus().consumer(GlobalVarialble.ADDRESS_HEALTH, message -> {
       JsonObject jsonObject = (JsonObject) message.body();
       logger.info(jsonObject.encode());

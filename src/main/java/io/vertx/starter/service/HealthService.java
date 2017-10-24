@@ -38,6 +38,8 @@ public class HealthService extends HuiResteasyAbstrack {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public void testConfig(@Suspended final AsyncResponse asyncResponse, @PathParam("key") String key, @Context Vertx vertx) {
+    logger.info(key);
+    key = key == null ? "test" : key;
     send(vertx, GlobalVarialble.ADDRESS_TEST_ZOOKEEPERCONFIG, new JsonObject().put("key", key), asyncResponse);
   }
 }

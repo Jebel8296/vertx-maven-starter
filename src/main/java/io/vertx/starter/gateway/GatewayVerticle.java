@@ -15,7 +15,6 @@ public class GatewayVerticle extends HuiAbstrackVerticle {
 
   @Override
   public void start() throws Exception {
-    super.start();
 
     VertxResteasyDeployment vertxResteasyDeployment = new VertxResteasyDeployment();
     vertxResteasyDeployment.start();
@@ -28,7 +27,7 @@ public class GatewayVerticle extends HuiAbstrackVerticle {
     //CORS
     enableCors(router);
     router.route("/micro/v1/*").handler(routingContext -> {
-      new VertxRequestHandler(vertx, vertxResteasyDeployment).handle(routingContext.request());
+      new VertxRequestHandler(vertx,vertxResteasyDeployment).handle(routingContext.request());
     });
     vertx.createHttpServer().requestHandler(router::accept).listen(9080);
     logger.info("GatewayVerticle Started.");
